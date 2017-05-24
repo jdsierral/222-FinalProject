@@ -158,6 +158,7 @@ float AudioProcessor::getPos(){
 int AudioProcessor::tick( void *outBuffer, unsigned int bufSize, void* dataBuffer){
     StkFloat* out =  (StkFloat*)outBuffer;
     FileWvIn* file = (FileWvIn*)dataBuffer;
+    float myGain = gain;
     
     for (unsigned int n = 0; n < bufSize; n++) {
         float w = file->tick(0);
@@ -189,8 +190,8 @@ int AudioProcessor::tick( void *outBuffer, unsigned int bufSize, void* dataBuffe
     
     
     for (unsigned int n = 0; n < bufSize; n++) {
-        out[2 * n] = BinLeft[n] * gain;
-        out[2 * n+1] = BinRight[n] * gain;
+        out[2 * n] = BinLeft[n] * myGain;
+        out[2 * n+1] = BinRight[n] * myGain;
         
         if (BinLeft[n] > 1.0 || BinRight[n] > 1.0)
             cout << "Clipped!" << endl;

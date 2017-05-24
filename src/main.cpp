@@ -1,3 +1,4 @@
+
 //
 //  main.cpp
 //  Stimmung
@@ -10,6 +11,9 @@
 #include "Stk.h"
 #include "FileWvIn.h"
 #include "RtAudio.h"
+#include <signal.h> 
+#include <stdio.h>
+#include <cstdlib>
 
 
 #include "SerialReader.hpp"
@@ -33,12 +37,15 @@
 
 
 
+
 using namespace stk;
 
 
 bool done;
 AudioProcessor processor(SAMPLE_RATE, BUF_SIZE, NUM_CHANS);
 bool macMode = false;
+
+static void finish (int ignore) { done = true; }
 
 
 
@@ -48,10 +55,16 @@ int tick( void *outBuffer, void* inBuffer, unsigned int bufSize, double streamTi
 
 
 int main(int argc, char * argv[]) {
+
     
-    if ( 0 == strcmp(argv[1], "MAC")) {
-        cout << "MacModeEnabled" << endl;
-        macMode = true;
+    if (argc > 1) {
+	if ( 0 == strcmp(argv[1], "MAC")) {
+	    cout << "MacModeEnabled" << endl;
+	    macMode = true;
+	}
+    } else {
+	cout << "LinuxModeEnabled" << endl;
+	macMode = false;
     }
     
     // ====================================================
@@ -75,6 +88,8 @@ int main(int argc, char * argv[]) {
     // ====================================================
     
     done = false;
+
+    (void) signal(SIGINT, finish);
     
     processor.readFile(macMode);
     processor.getFileStatistics();
@@ -83,22 +98,18 @@ int main(int argc, char * argv[]) {
     
     char data[2];
     while (!done) {
-        usleep(20);
+	Stk::sleep(100);
         data[0] = data[1] = 0;
         int numBytes = serial->tick((void*)data, 2);
         
         if (numBytes == 2) {
-            float pos = (float)data[0]/256.f;
-            float gain = (float)data[1]/256.f;
+            float pos = (float)data[0]/128.f;
+            float gain = (float)data[1]/128.f;
             
-            cout << "Pos: " << pos  << endl;
-            cout << "Gain: "<< gain << endl;
             processor.setPos(pos);
             processor.setGain(gain);
         }
     }
-    
-    
-    
+  
     return 0;
 }

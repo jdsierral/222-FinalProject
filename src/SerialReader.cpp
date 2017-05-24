@@ -71,5 +71,6 @@ void SerialReader::setMacPortName() {
 }
 
 void SerialReader::setLinuxPortName() {
-    portName = "/dev/ttyACMO";
+   portName = "/dev/ttyACM0";
+   //portName = "/dev/ttyS1";
 }
