@@ -22,14 +22,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  pos = (1024 - analogRead(aI1))/8;
+  pos = (1024 - analogRead(aI1))/4;
   posState += b0 * (pos - posState);
 
-  vol = (1024 - analogRead(aI2))/-8;
+  vol = (1024 - analogRead(aI2))/4;
   volState += b0 * (vol - volState);
 
-  Serial.write((char)pos);
-  Serial.write((char)vol);
+  Serial.write((unsigned char)pos);
+  Serial.write((unsigned char)vol);
 
   
 //  Serial.write((char)(posState/2 + 128));

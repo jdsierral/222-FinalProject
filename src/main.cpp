@@ -38,6 +38,7 @@ using namespace stk;
 
 bool done;
 AudioProcessor processor(SAMPLE_RATE, BUF_SIZE, NUM_CHANS);
+bool macMode = false;
 
 
 
@@ -48,13 +49,21 @@ int tick( void *outBuffer, void* inBuffer, unsigned int bufSize, double streamTi
 
 int main(int argc, char * argv[]) {
     
+    if ( 0 == strcmp(argv[1], "MAC")) {
+        cout << "MacModeEnabled" << endl;
+        macMode = true;
+    }
+    
     // ====================================================
     // ====================================================
     
     SerialReader* serial;
     serial = new SerialReader;
-    serial->setMacPortName();
-//    serial->setLinuxPortName();
+    if (macMode) {
+        serial->setMacPortName();
+    } else {
+        serial->setLinuxPortName();
+    }
     
     if (serial->init()) {
         cout<< "SerialPort Opened" << endl;
@@ -71,17 +80,19 @@ int main(int argc, char * argv[]) {
     processor.initAudio( &tick );
     processor.startStreaming();
     
-    char data;
+    char data[2];
     while (!done) {
-        serial->tick((void*)&data, 1);
+        usleep(20);
+        data[0] = data[1] = 0;
+        int numBytes = serial->tick((void*)data, 2);
         
-        if (data >= 0 && data < 127) {
-            float pos =(float)((int)data)/127.f;
-            cout << "Pos: " << pos << endl;
+        if (numBytes == 2) {
+            float pos = (float)data[0]/256.f;
+            float gain = (float)data[1]/256.f;
+            
+            cout << "Pos: " << pos  << endl;
+            cout << "Gain: "<< gain << endl;
             processor.setPos(pos);
-        } else if (data < 0 && data > -127) {
-            float gain= -(float)((int)data)/127.f;
-            cout << "Gain: " << gain << endl;
             processor.setGain(gain);
         }
     }

@@ -101,7 +101,6 @@
 		2CAEA7511ECFD71B006F744E /* PercFlut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PercFlut.h; sourceTree = "<group>"; };
 		2CAEA7521ECFD71B006F744E /* Phonemes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Phonemes.h; sourceTree = "<group>"; };
 		2CAEA7531ECFD71B006F744E /* PitShift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PitShift.h; sourceTree = "<group>"; };
-		2CAEA7541ECFD71B006F744E /* play.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = play.cpp; sourceTree = "<group>"; };
 		2CAEA7551ECFD71B006F744E /* Plucked.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plucked.h; sourceTree = "<group>"; };
 		2CAEA7561ECFD71B006F744E /* PoleZero.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoleZero.h; sourceTree = "<group>"; };
 		2CAEA7571ECFD71B006F744E /* PRCRev.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRCRev.h; sourceTree = "<group>"; };
@@ -300,7 +299,6 @@
 				2CAEA7511ECFD71B006F744E /* PercFlut.h */,
 				2CAEA7521ECFD71B006F744E /* Phonemes.h */,
 				2CAEA7531ECFD71B006F744E /* PitShift.h */,
-				2CAEA7541ECFD71B006F744E /* play.cpp */,
 				2CAEA7551ECFD71B006F744E /* Plucked.h */,
 				2CAEA7561ECFD71B006F744E /* PoleZero.h */,
 				2CAEA7571ECFD71B006F744E /* PRCRev.h */,

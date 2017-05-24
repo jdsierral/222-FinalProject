@@ -66,8 +66,8 @@ void SerialReader::setBaudRate(int newBaudRate) {
 }
 
 void SerialReader::setMacPortName() {
-    portName = "/dev/cu.usbmodem641";
-    //portName = "/dev/cu.usbmodem441";
+//    portName = "/dev/cu.usbmodem641";
+    portName = "/dev/cu.usbmodem411";
 }
 
 void SerialReader::setLinuxPortName() {

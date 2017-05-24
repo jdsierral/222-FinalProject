@@ -17,8 +17,7 @@ AudioProcessor::AudioProcessor(int fs, unsigned int intendedBufSize, int numChan
     //    string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Quad.wav";
     //    string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Thomas_Mackay.wav";
     //    string filePath = "/Users/JuanS/Music/Stimmung/Stimmung/AudioFiles/NoiseTest.wav";
-    string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Stimmung-May19.wav";
-    
+        string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Stimmung-May19.wav";
     Stk::setSampleRate(sampleRate);
     
     try {
