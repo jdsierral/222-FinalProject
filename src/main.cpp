@@ -76,6 +76,7 @@ int main(int argc, char * argv[]) {
     
     done = false;
     
+    processor.readFile(macMode);
     processor.getFileStatistics();
     processor.initAudio( &tick );
     processor.startStreaming();

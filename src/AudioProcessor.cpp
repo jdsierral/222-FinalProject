@@ -14,19 +14,9 @@
 AudioProcessor::AudioProcessor(int fs, unsigned int intendedBufSize, int numChans)
 : sampleRate(fs), bufSize(intendedBufSize), nChans(numChans), gain(1), repeatEnabled(true)
 {
-    //    string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Quad.wav";
-    //    string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Thomas_Mackay.wav";
-    //    string filePath = "/Users/JuanS/Music/Stimmung/Stimmung/AudioFiles/NoiseTest.wav";
-        string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Stimmung-May19.wav";
     Stk::setSampleRate(sampleRate);
     
-    try {
-        file = new FileWvIn(filePath);
-    } catch (StkError &error) {
-        error.printMessage();
-    }
-    
-    
+
     try {
         dac = new RtAudio();
     } catch (StkError &error) {
@@ -87,6 +77,26 @@ void AudioProcessor::initAudio( RtAudioCallback callback ) {
     posSmooth.setSmooth(0.99);
 }
 
+void AudioProcessor::readFile(bool MacMode) {
+    //    string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Quad.wav";
+    //    string filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Thomas_Mackay.wav";
+    //    string filePath = "/Users/JuanS/Music/Stimmung/Stimmung/AudioFiles/NoiseTest.wav";
+    
+    string filePath;
+    if (MacMode) {
+        filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Stimmung-May19.wav";
+    } else {
+        filePath = "/home/pi/Developer/Stimmung/AudioFiles/Stimmung-May19.wav";
+    }
+    
+    
+    try {
+        file = new FileWvIn(filePath);
+    } catch (StkError &error) {
+        error.printMessage();
+    }
+    
+}
 
 void AudioProcessor::getFileStatistics() {
     cout << "File Sample Rate: " << file->getFileRate() << endl;

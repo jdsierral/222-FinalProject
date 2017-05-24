@@ -30,6 +30,7 @@ public:
     
 
     void initAudio( RtAudioCallback callback );
+    void readFile(bool MacMode);
     void resizeBuffers(unsigned int bufSize);
     void startStreaming();
     void getFileStatistics();
