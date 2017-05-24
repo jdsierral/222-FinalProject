@@ -1,12 +1,9 @@
 EXE = Stimm
 NAME = main
 TEST_ARGS = 0.1
-LOCAL_OBJECTS = 
+LOCAL_OBJECTS = AudioProcessor.cpp Convolver.cpp Rotator.cpp SerialReader.cpp
 OTHER_CLEANS = *.wav
 
-# <STK>/myproj/Makefile-proj - Makefile shared by subdirectories.
-
-# Choose one of the following two systems:
 
 #OS = MACOSX
 #OSLIBS = -framework CoreAudio -framework CoreMidi -framework CoreFoundation
@@ -14,30 +11,11 @@ OTHER_CLEANS = *.wav
 OS = LINUX
 OSLIBS = -lasound
 
-# This is a simple manually written Makefile, tested on Linux and Mac
-# OS X.  For a more elaborate automatically generated (by autotools)
-# example, see <STK>/projects/examples/Makefile
-
-# USAGE: In a subdirectory, such as ./delay, for example, have a
-# Makefile that looks something like the following (without the '#'
-# comment characters, of course):
-#
-# NAME = delay
-# TEST_ARGS = gtr.wav
-# LOCAL_OBJECTS = delayline.o
-# OTHER_CLEANS = delay.wav
-# include ../Makefile-proj
-#
-# See ./delay/Makefile for more explanation of these definitions.
-
-# --- BEGIN SHARED MAKEFILE ---
-
 RM = /bin/rm
 TRASH = /usr/local/bin/trash
 
-# The following STK path works when the current directory is parallel
-# to, say, projects/examples
-STK_PATH = /home/pi/Documents/Dev/STK
+# Set the Path for the STK directory
+STK_PATH = /home/pi/Developer/STK
 
 LIBSTK_SRC = $(STK_PATH)/src
 LIBSTK_INCLUDE = $(STK_PATH)/include
@@ -47,9 +25,20 @@ vpath %.h $(LIBSTK_INCLUDE)
 # CURRENT WORKING DIRECTORY (i.e., not including STK modules, which
 # will be found in the STK library):
 
+# OTHER PATHS TO INCLUDE
+
+LIB_FFT = /home/pi/Developer/Stimmung/FFT_CODE
+LIB_HRTF = /home/pi/Developer/Stimmung/mit-hrtf-lib-master
+LIB_HRTF_INCLUDE = $(LIB_HRTF)/include
+LIB_HRTF_SRC = $(LIB_HRTF)/source
+LIB_HRTF_NORMAL = $(LIB_HRTF_SRC)/normal
+LIB_HRTF_DIFFUSE= $(LIB_HRTF_SRC)/diffuse
+LIB_SRC = /home/pi/Developer/Stimmung/src
+
+
 CC       = g++
 DEFS     =  -D_STK_DEBUG_ -D__STK_REALTIME__ -D__OS_$(OS)__
-CFLAGS   = -g -Wall -O0 -I$(LIBSTK_INCLUDE) -std=c++11
+CFLAGS   = -g -Wall -O0 -I$(LIBSTK_INCLUDE) -I $(LIB_FFT) -I$(LIB_HRTF_INCLUDE) -I$(LIB_HRTF_NORMAL) -I$(LIB_HRTF_DIFFUSE) -std=c++11
 
 # Here is the STK library itself (made fresh if necessary):
 LIBSTK = $(LIBSTK_SRC)/libstk.a
@@ -91,7 +80,7 @@ $(LIBSTK): $(LIBSTK_SRC)/*.cpp $(LIBSTK_INCLUDE)/*.h
 %.o: %.cpp %.c
 	$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $@
 
-$(NAME): $(NAME).cpp $(LOCAL_OBJECTS) $(LIBSTK)
+$(NAME): $(NAME).cpp $(LOCAL_OBJECTS) $(LIBSTK) $(LIB_FFT) $(LIB_HRTF_SRC)/mit_hrtf_lib.c
 	$(CC) $(CFLAGS) $(DEFS) -o ../Builds/$(EXE) $(NAME).cpp $(LOCAL_OBJECTS) $(LIBRARY)
 
 
