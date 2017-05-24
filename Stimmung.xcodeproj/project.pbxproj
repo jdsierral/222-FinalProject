@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C8012E61ED54CAE003DC4C9 /* mit_hrtf_lib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CE713ED1ED1F41500B774D3 /* mit_hrtf_lib.cpp */; };
 		2CAEA7131ECFD69F006F744E /* libstk-4.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAEA7121ECFD69F006F744E /* libstk-4.5.1.dylib */; };
 		2CAEA77F1ECFD82D006F744E /* Rotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CAEA77D1ECFD82D006F744E /* Rotator.cpp */; };
 		2CAEA7821ECFD86B006F744E /* Convolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CAEA7801ECFD86B006F744E /* Convolver.cpp */; };
@@ -15,7 +16,6 @@
 		2CAEA7871ECFDF7B006F744E /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CAEA70D1ECFD690006F744E /* fft.cpp */; };
 		2CAEA7881ECFE127006F744E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CAEA7101ECFD690006F744E /* main.cpp */; };
 		2CBD2B1B1ED00E4E0051AEC5 /* AudioProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD2B191ED00E4E0051AEC5 /* AudioProcessor.cpp */; };
-		2CE713F31ED1F7EA00B774D3 /* mit_hrtf_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CE713ED1ED1F41500B774D3 /* mit_hrtf_lib.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,7 +157,7 @@
 		2CE713EA1ED1F41500B774D3 /* mit_hrtf_diffuse_88200.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mit_hrtf_diffuse_88200.h; sourceTree = "<group>"; };
 		2CE713EB1ED1F41500B774D3 /* mit_hrtf_diffuse_96000.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mit_hrtf_diffuse_96000.h; sourceTree = "<group>"; };
 		2CE713EC1ED1F41500B774D3 /* mit_hrtf_filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mit_hrtf_filter.h; sourceTree = "<group>"; };
-		2CE713ED1ED1F41500B774D3 /* mit_hrtf_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mit_hrtf_lib.c; sourceTree = "<group>"; };
+		2CE713ED1ED1F41500B774D3 /* mit_hrtf_lib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mit_hrtf_lib.cpp; sourceTree = "<group>"; };
 		2CE713EF1ED1F41500B774D3 /* mit_hrtf_normal_44100.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mit_hrtf_normal_44100.h; sourceTree = "<group>"; };
 		2CE713F01ED1F41500B774D3 /* mit_hrtf_normal_48000.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mit_hrtf_normal_48000.h; sourceTree = "<group>"; };
 		2CE713F11ED1F41500B774D3 /* mit_hrtf_normal_88200.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mit_hrtf_normal_88200.h; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 				2CE713E71ED1F41500B774D3 /* diffuse */,
 				2CE713EE1ED1F41500B774D3 /* normal */,
 				2CE713EC1ED1F41500B774D3 /* mit_hrtf_filter.h */,
-				2CE713ED1ED1F41500B774D3 /* mit_hrtf_lib.c */,
+				2CE713ED1ED1F41500B774D3 /* mit_hrtf_lib.cpp */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -462,7 +462,7 @@
 				2CAEA7861ECFDF78006F744E /* complex.cpp in Sources */,
 				2CAEA7871ECFDF7B006F744E /* fft.cpp in Sources */,
 				2CBD2B1B1ED00E4E0051AEC5 /* AudioProcessor.cpp in Sources */,
-				2CE713F31ED1F7EA00B774D3 /* mit_hrtf_lib.c in Sources */,
+				2C8012E61ED54CAE003DC4C9 /* mit_hrtf_lib.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

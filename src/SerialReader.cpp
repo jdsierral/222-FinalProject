@@ -49,6 +49,7 @@ bool SerialReader::init() {
 
 int SerialReader::tick(void* dataByte, size_t dataSize) {
     return (int)read(portId, dataByte, dataSize);
+    
 }
 
 
@@ -65,7 +66,8 @@ void SerialReader::setBaudRate(int newBaudRate) {
 }
 
 void SerialReader::setMacPortName() {
-    portName = "/dev/cu.usbmodem411";
+    portName = "/dev/cu.usbmodem641";
+    //portName = "/dev/cu.usbmodem441";
 }
 
 void SerialReader::setLinuxPortName() {

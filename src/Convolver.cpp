@@ -21,12 +21,12 @@ void Convolver::initBuffers(){
 
 void Convolver::process(StkFloat* spkr, StkFloat* leftBin, StkFloat* rightBin, unsigned int bufSize){
     
-    for (int n = 0; n < nFFT; n++)
+    for (unsigned int n = 0; n < nFFT; n++)
         dataL[n] = complex( n < bufSize ? spkr[n] : 0.0 );
     
     CFFT::Forward(dataL.data(), nFFT);
     
-    for (int n = 0; n < nFFT; n++) {
+    for (unsigned int n = 0; n < nFFT; n++) {
         dataR[n] = dataL[n] * irR[n];
         dataL[n] *= irL[n];
     }
@@ -34,14 +34,14 @@ void Convolver::process(StkFloat* spkr, StkFloat* leftBin, StkFloat* rightBin, u
     CFFT::Inverse(dataL.data(), nFFT);
     CFFT::Inverse(dataR.data(), nFFT);
     
-    for (int n = 0; n < nFFT; n ++) {
+    for (unsigned int n = 0; n < nFFT; n ++) {
         resL[wtPos] += dataL[n].re();
         resR[wtPos] += dataR[n].re();
         
         if (++wtPos <= nFFT) wtPos = 0;
     }
     
-    for (int n = 0; n < bufSize; n ++) {
+    for (unsigned int n = 0; n < bufSize; n ++) {
         leftBin[n]  += resL[rdPos];
         rightBin[n] += resR[rdPos];
         

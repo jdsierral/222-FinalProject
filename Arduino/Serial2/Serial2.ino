@@ -1,6 +1,5 @@
 #define BAUD_RATE 9400
 
-
 int aI1 = A0;
 int aI2 = A2;
 int led = 13;
@@ -23,12 +22,16 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  pos = (float)analogRead(aI1)/8.f;
+  pos = (1024 - analogRead(aI1))/8;
   posState += b0 * (pos - posState);
 
-  vol = (float)analogRead(aI2)/8.f;
+  vol = (1024 - analogRead(aI2))/-8;
   volState += b0 * (vol - volState);
+
+  Serial.write((char)pos);
+  Serial.write((char)vol);
+
   
-  Serial.write((unsigned char)posState);
-  Serial.write((unsigned char)volState);
+//  Serial.write((char)(posState/2 + 128));
+//  Serial.write((char)(posState/2)); 
 }

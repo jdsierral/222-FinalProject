@@ -16,7 +16,7 @@
 #include "Rotator.hpp"
 #include "Convolver.hpp"
 #include "AudioProcessor.hpp"
-
+#include <String.h>
 
 
 // ========================================================
@@ -71,13 +71,19 @@ int main(int argc, char * argv[]) {
     processor.initAudio( &tick );
     processor.startStreaming();
     
-    unsigned char data [2] = {0, 0};
+    char data;
     while (!done) {
-        serial->tick((void*)&data, 2);
-        float pos = (float)data[0]/128.f;
-        float gain = (float)data[1]/128.f;
-        processor.setPos(pos);
-        processor.setGain(gain);
+        serial->tick((void*)&data, 1);
+        
+        if (data >= 0 && data < 127) {
+            float pos =(float)((int)data)/127.f;
+            cout << "Pos: " << pos << endl;
+            processor.setPos(pos);
+        } else if (data < 0 && data > -127) {
+            float gain= -(float)((int)data)/127.f;
+            cout << "Gain: " << gain << endl;
+            processor.setGain(gain);
+        }
     }
     
     
