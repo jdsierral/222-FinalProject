@@ -1,7 +1,7 @@
 EXE = Stimm
 NAME = main
 TEST_ARGS = 0.1
-LOCAL_OBJECTS = AudioProcessor.cpp Convolver.cpp Rotator.cpp SerialReader.cpp
+LOCAL_OBJECTS = AudioProcessor.cpp Convolver.cpp Rotator.cpp SerialReader.cpp /home/pi/Developer/Stimmung/FFT_CODE/complex.cpp /home/pi/Developer/Stimmung/FFT_CODE/fft.cpp /home/pi/Developer/Stimmung/mit-hrtf-lib-master/source/mit_hrtf_lib.cpp
 OTHER_CLEANS = *.wav
 
 
@@ -38,7 +38,7 @@ LIB_SRC = /home/pi/Developer/Stimmung/src
 
 CC       = g++
 DEFS     =  -D_STK_DEBUG_ -D__STK_REALTIME__ -D__OS_$(OS)__
-CFLAGS   = -g -Wall -O0 -I$(LIBSTK_INCLUDE) -I $(LIB_FFT) -I$(LIB_HRTF_INCLUDE) -I$(LIB_HRTF_NORMAL) -I$(LIB_HRTF_DIFFUSE) -std=c++11
+CFLAGS   = -g -Wall -O0 -I$(LIBSTK_INCLUDE) -I$(LIB_FFT) -I$(LIB_HRTF_INCLUDE) -I$(LIB_HRTF_NORMAL) -I$(LIB_HRTF_DIFFUSE) -std=c++11
 
 # Here is the STK library itself (made fresh if necessary):
 LIBSTK = $(LIBSTK_SRC)/libstk.a
@@ -62,7 +62,7 @@ t test : $(NAME) $(STKPLAY)
 	$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $@
 
 clean :
-	$(RM) -f $(NAME) $(LOCAL_OBJECTS) $(OTHER_CLEANS)
+	$(RM) -f $(OTHER_CLEANS)
 	$(RM) -fR *~ *.dSYM
 	$(RM) -fR ../Builds/*
 	$(TRASH) ../Bounces/*
@@ -80,7 +80,7 @@ $(LIBSTK): $(LIBSTK_SRC)/*.cpp $(LIBSTK_INCLUDE)/*.h
 %.o: %.cpp %.c
 	$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $@
 
-$(NAME): $(NAME).cpp $(LOCAL_OBJECTS) $(LIBSTK) $(LIB_FFT) $(LIB_HRTF_SRC)/mit_hrtf_lib.c
+$(NAME): $(NAME).cpp $(LOCAL_OBJECTS) $(LIBSTK) $(LIB_HRTF_SOURCE)
 	$(CC) $(CFLAGS) $(DEFS) -o ../Builds/$(EXE) $(NAME).cpp $(LOCAL_OBJECTS) $(LIBRARY)
 
 
