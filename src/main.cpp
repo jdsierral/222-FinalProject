@@ -16,7 +16,7 @@
 #include "Rotator.hpp"
 #include "Convolver.hpp"
 #include "AudioProcessor.hpp"
-#include <String.h>
+
 
 
 // ========================================================

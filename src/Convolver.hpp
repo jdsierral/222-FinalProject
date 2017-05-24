@@ -30,11 +30,11 @@ public:
     void loadIrData(int azimuth, int elevation, int sampleRate);
     
 private:
-    int nFFT;
-    int nTaps;
+    unsigned int nFFT;
+    unsigned int nTaps;
     
-    int rdPos;
-    int wtPos;
+    unsigned int rdPos;
+    unsigned int wtPos;
     
     
     short* pLeft;
