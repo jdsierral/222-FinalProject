@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "58A3E0F48A6664C756BA682B29DC8F534C71FD3C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "58A3E0F48A6664C756BA682B29DC8F534C71FD3C" : 9223372036854775807,
+    "CF62AFF489EC5CAA44EC939D83D4F00113564430" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1A030648-7115-4EAF-B39E-EC03FC441D83",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "58A3E0F48A6664C756BA682B29DC8F534C71FD3C" : "Stimmung\/",
+    "CF62AFF489EC5CAA44EC939D83D4F00113564430" : "..\/..\/DevTools\/stk"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Stimmung",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Stimmung.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jdsierral\/222-FinalProject.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "58A3E0F48A6664C756BA682B29DC8F534C71FD3C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/thestk\/stk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CF62AFF489EC5CAA44EC939D83D4F00113564430"
+    }
+  ]
+}

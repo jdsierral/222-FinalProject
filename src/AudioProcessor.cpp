@@ -150,7 +150,7 @@ int AudioProcessor::tick( void *outBuffer, unsigned int bufSize, void* dataBuffe
     StkFloat* out =  (StkFloat*)outBuffer;
     FileWvIn* file = (FileWvIn*)dataBuffer;
     
-    for (int n = 0; n < bufSize; n++) {
+    for (unsigned int n = 0; n < bufSize; n++) {
         float w = file->tick(0);
         float x = file->lastOut(1);
         float y = file->lastOut(2);
@@ -173,13 +173,13 @@ int AudioProcessor::tick( void *outBuffer, unsigned int bufSize, void* dataBuffe
     rightFft->process(&frontSpkr[0], &BinLeft[0], &BinRight[0], bufSize);
     
     
-    for (int n = 0; n < bufSize; n++) {
+    for (unsigned int n = 0; n < bufSize; n++) {
         BinLeft[n] = (leftSpkr[n] + frontSpkr[n])/2.0;
         BinRight[n] = (rightSpkr[n] + frontSpkr[n])/2.0;
     }
     
     
-    for (int n = 0; n < bufSize; n++) {
+    for (unsigned int n = 0; n < bufSize; n++) {
         out[2 * n] = BinLeft[n] * gain;
         out[2 * n+1] = BinRight[n] * gain;
         
