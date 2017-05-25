@@ -53,9 +53,14 @@ AudioProcessor::~AudioProcessor() {
 
 // ==============================================================  //
 
-void AudioProcessor::initAudio( RtAudioCallback callback ) {
+void AudioProcessor::initAudio( RtAudioCallback callback, bool macMode) {
     RtAudio::StreamParameters params;
-    params.deviceId = dac->getDefaultOutputDevice();
+
+    if (macMode) {
+	params.deviceId = dac->getDefaultOutputDevice();
+    } else {
+	params.deviceId = 2;
+    }
     cout << "Using Device: " << dac->getDeviceInfo(params.deviceId).name << endl;
     params.nChannels = 2;
     cout << "With " << params.nChannels << " Channels." << endl;
@@ -167,11 +172,13 @@ int AudioProcessor::tick( void *outBuffer, unsigned int bufSize, void* dataBuffe
         float z = file->lastOut(3);
         
         rotator->process(x, y);
-        
-        frontSpkr[n] =  w + x;
-        backSpkr [n] =  w - x;
-        leftSpkr [n] =  w + y;
-        rightSpkr[n] =  w - y;
+
+	float k = sqrt(2)/2.f;
+	
+        frontSpkr[n] = k * w + x;
+        backSpkr [n] = k * w - x;
+        leftSpkr [n] = k * w + y;
+        rightSpkr[n] = k * w - y;
         
         BinLeft[n] = 0;
         BinRight[n] = 0;

@@ -29,7 +29,7 @@ public:
     int tick( void *outBuffer, unsigned int bufSize, void* dataBuffer);
     
 
-    void initAudio( RtAudioCallback callback );
+    void initAudio( RtAudioCallback callback, bool macMode );
     void readFile(bool MacMode);
     void resizeBuffers(unsigned int bufSize);
     void startStreaming();

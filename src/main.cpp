@@ -93,7 +93,7 @@ int main(int argc, char * argv[]) {
     
     processor.readFile(macMode);
     processor.getFileStatistics();
-    processor.initAudio( &tick );
+    processor.initAudio( &tick, macMode );
     processor.startStreaming();
     
     
@@ -101,8 +101,8 @@ int main(int argc, char * argv[]) {
     while (!done) {
         int numBytes = serial->tick((void*)data, 2);
         if (numBytes == 2) {
-            cout << "Pos: " << (int)data[0] << "\t \t";
-            cout << "Vol: " << (int)data[1] << endl;
+            // cout << "Pos: " << (int)data[0] << "\t \t";
+            // cout << "Vol: " << (int)data[1] << endl;
             float newPos = (float)data[0]/255.f;
             float newVol = (float)data[1]/255.f;
             
