@@ -89,9 +89,9 @@ void AudioProcessor::readFile(bool MacMode) {
     
     string filePath;
     if (MacMode) {
-        filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Stimmung-May19.wav";
+        filePath = "/Users/JuanS/Developer/CCRMA/222/Stimmung/AudioFiles/Stimmung.wav";
     } else {
-        filePath = "/home/pi/Developer/Stimmung/AudioFiles/Stimmung-May19.wav";
+        filePath = "/home/pi/Developer/Stimmung/AudioFiles/Stimmung.wav";
     }
     
     
@@ -197,8 +197,8 @@ int AudioProcessor::tick( void *outBuffer, unsigned int bufSize, void* dataBuffe
     
     
     for (unsigned int n = 0; n < bufSize; n++) {
-        out[2 * n] = BinLeft[n] * myGain;
-        out[2 * n+1] = BinRight[n] * myGain;
+        out[2 * n] = BinRight[n] * myGain;
+        out[2 * n+1] = BinLeft[n] * myGain;
         
         if (BinLeft[n] > 1.0 || BinRight[n] > 1.0)
             cout << "Clipped!" << endl;
