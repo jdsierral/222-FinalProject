@@ -56,11 +56,13 @@ AudioProcessor::~AudioProcessor() {
 void AudioProcessor::initAudio( RtAudioCallback callback, bool macMode) {
     RtAudio::StreamParameters params;
 
+
     if (macMode) {
 	params.deviceId = dac->getDefaultOutputDevice();
     } else {
 	params.deviceId = 2;
     }
+
     cout << "Using Device: " << dac->getDeviceInfo(params.deviceId).name << endl;
     params.nChannels = 2;
     cout << "With " << params.nChannels << " Channels." << endl;
