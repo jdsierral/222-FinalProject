@@ -96,20 +96,22 @@ int main(int argc, char * argv[]) {
     processor.initAudio( &tick );
     processor.startStreaming();
     
-    char data[2];
+    
+    unsigned char data[2];
     while (!done) {
-	Stk::sleep(100);
-        data[0] = data[1] = 0;
         int numBytes = serial->tick((void*)data, 2);
-        
         if (numBytes == 2) {
-            float pos = (float)data[0]/128.f;
-            float gain = (float)data[1]/128.f;
+            cout << "Pos: " << (int)data[0] << "\t \t";
+            cout << "Vol: " << (int)data[1] << endl;
+            float newPos = (float)data[0]/255.f;
+            float newVol = (float)data[1]/255.f;
             
-            processor.setPos(pos);
-            processor.setGain(gain);
+            processor.setPos(newPos);
+            processor.setGain(newVol);
+        } else {
+            cout << "Check stuff: " << numBytes << endl;
         }
     }
-  
+    
     return 0;
 }

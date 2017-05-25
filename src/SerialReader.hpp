@@ -45,9 +45,7 @@ private:
     string portName;
     int baudRate;
     
-    struct termios tio;
-    struct termios stdio;
-    struct termios old_stdio;
+    struct termios pConf;
 };
 
 

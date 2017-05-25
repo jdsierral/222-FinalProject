@@ -1,4 +1,4 @@
-#define BAUD_RATE 9400
+#define BAUD_RATE 9600
 
 int aI1 = A0;
 int aI2 = A2;
@@ -7,7 +7,7 @@ float pos= 0;
 float posState = 0;
 float vol= 0;
 float volState = 0;
-float t = 0.001;
+float t = 0.0001;
 
 float a0;
 float b0;
@@ -22,10 +22,10 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  pos = (1024-analogRead(aI1))/4;
+  pos = (1023-min(analogRead(aI1), 1024))/4;
   posState += b0 * (pos - posState);
 
-  vol = (1024-analogRead(aI2))/4;
+  vol = (1023-min(analogRead(aI2), 1024))/4;
   volState += b0 * (vol - volState);
 
   Serial.write((unsigned char)posState);
